@@ -1,0 +1,10 @@
+.footer {
+  margin: 67px auto 60px;
+}
+
+.footer__copyright {
+  font-size: 18px;
+  line-height: 21.78px;
+  color: #545454;
+  margin: 0 auto;
+}
