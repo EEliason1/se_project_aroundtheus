@@ -12,8 +12,36 @@
     />
     <meta name="author" content="Evan Eliason" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./pages/index.css" />
     <title>Around the US</title>
     <link rel="icon" href="favicon.ico" />
   </head>
-  <body></body>
+  <body class="page">
+    <div class="page__desktop">
+      <header class="header page__section">
+        <img
+          src="./images/logo-white.svg"
+          alt="Around the U.S. Logo"
+          class="header__logo"
+        />
+      </header>
+      <section class="profile page__section">
+        <img
+          src="./images/jacques-cousteau.png"
+          alt="Profile picture"
+          class="profile__image"
+        />
+        <ul class="profile__list">
+          <li class="profile__list profile__list_name">
+            <h1 class="profile__name">Jacques Cousteau</h1>
+            <button class="profile__edit-button" type="edit"></button>
+          </li>
+          <li class="profile__list profile__list_description">
+            <h2 class="profile__description">Explorer</h2>
+          </li>
+        </ul>
+        <button class="profile__add-button" type="add"></button>
+      </section>
+    </div>
+  </body>
 </html>
