@@ -1,0 +1,65 @@
+@keyframes button-hover {
+  0% {
+    opacity: 100%;
+  }
+  100% {
+    opacity: 50%;
+  }
+}
+
+.elements {
+}
+
+.elements__list {
+  list-style-type: none;
+  margin: 51px auto;
+  padding: 0;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fit, 282px);
+  grid-gap: 20px 17px;
+}
+
+.elements__card {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  border: none;
+  overflow: hidden;
+}
+
+.elements__image {
+  width: 282px;
+  height: 282px;
+}
+
+.elements__description {
+  display: flex;
+  align-items: center;
+  padding: 25px 20px;
+  background-color: #fff;
+}
+
+.elements__name {
+  color: #000;
+  margin: 0 auto 0 0;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29.05px;
+}
+
+.elements__like-button {
+  width: 20px;
+  height: 18px;
+  background-image: url("../images/heart.svg");
+  background-color: transparent;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: none;
+  padding: 0;
+}
+
+.elements__like-button:hover {
+  animation: button-hover 0.25s ease-in-out forwards;
+}
