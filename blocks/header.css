@@ -1,8 +1,18 @@
 .header {
-  margin-top: 45px;
+  margin: 45px auto 0;
 }
 
 .header__logo {
   width: 173x;
   height: 33px;
+}
+
+@media screen and (max-width: 975px) {
+  .header {
+    margin: 0 auto;
+  }
+
+  .header__logo {
+    margin: 28px auto 0 27px;
+  }
 }

@@ -9,7 +9,6 @@
 
 .profile {
   margin-top: 40px;
-  height: 120px;
   display: flex;
   align-items: center;
 }
@@ -38,8 +37,9 @@
 
 .profile__name {
   font-size: 42px;
-  line-height: 48px;
+  line-height: 1.2;
   margin: 0 auto;
+  font-weight: 500;
 }
 
 .profile__edit-button {
@@ -65,9 +65,10 @@
 
 .profile__description {
   font-size: 18px;
-  line-height: 21.78px;
+  line-height: 1.2;
   margin: 0 auto;
   padding-top: 7px;
+  font-weight: 400;
 }
 
 .profile__add-button {
@@ -83,4 +84,49 @@
 
 .profile__add-button:hover {
   animation: button-hover 0.25s ease-in-out forwards;
+}
+
+@media screen and (max-width: 975px) {
+  .profile {
+    margin: 40px auto 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    max-width: 880px;
+  }
+
+  .profile__list {
+    margin: 30px auto 36px;
+    text-align: center;
+  }
+
+  .profile__list_name {
+    margin: 0 auto;
+  }
+
+  .profile__list_description {
+    margin: 0 auto;
+  }
+
+  .profile__add-button {
+    width: 282px;
+    height: 50px;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (max-width: 675px) {
+  .profile__name {
+    font-size: 22px;
+  }
+
+  .profile__description {
+    font-size: 14px;
+  }
+
+  .profile__edit-button {
+    width: 18px;
+    height: 18px;
+  }
 }
