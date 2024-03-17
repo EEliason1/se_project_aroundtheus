@@ -22,7 +22,7 @@ Good luck and have fun!
 
 **Google Drive Link for Overview Video**
 
-https://drive.google.com/file/d/1QfjJblP-GUxLikP7B80ZEN8aUlxz117J/view?usp=sharing
+https://drive.google.com/file/d/1QfjJblP-GUxLikP7B80ZEN8aUlxz117J/view?usp=drive_link
 
 I apologize for the video being 12 minutes instead of 5-10. I tried to minimize the content as much as I could but it didn't seem like I could cut enough out and still get the whole point across on how the project was completed.
 
