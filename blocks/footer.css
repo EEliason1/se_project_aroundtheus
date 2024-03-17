@@ -22,4 +22,8 @@
     margin-top: 48px;
     margin-bottom: 36px;
   }
+
+  .footer__copyright {
+    font-size: 14px;
+  }
 }

@@ -1,18 +1,10 @@
-@keyframes button-hover {
-  0% {
-    opacity: 100%;
-  }
-  100% {
-    opacity: 50%;
-  }
-}
-
 .elements {
+  padding-top: 51px;
 }
 
 .elements__list {
   list-style-type: none;
-  margin: 51px auto;
+  margin: 0 auto;
   padding: 0;
   display: grid;
   justify-content: center;
@@ -66,11 +58,18 @@
 }
 
 .elements__like-button:hover {
-  animation: button-hover 0.25s ease-in-out forwards;
+  opacity: 50%;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 975px) {
-  .elements__list {
-    margin: 51px 40px 0;
+  .elements {
+    padding-top: 51px;
+  }
+}
+
+@media screen and (max-width: 677px) {
+  .elements {
+    padding-top: 36px;
   }
 }
