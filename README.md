@@ -38,6 +38,8 @@ I apologize for the video being 12 minutes instead of 5-10. I tried to minimize 
 
 **Link to Website on GitHub Pages**
 
+https://eeliason1.github.io/se_project_aroundtheus/
+
 **Plans to Improve the Project**
 
 One improvement would be to compress some of the code. There are a few line I noticed are repetative and could be removed.
