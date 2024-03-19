@@ -55,17 +55,12 @@
   background-repeat: no-repeat;
   border: none;
   padding: 0;
+  transition: ease-in-out 0.2s;
 }
 
 .elements__like-button:hover {
   opacity: 50%;
   cursor: pointer;
-}
-
-@media screen and (max-width: 975px) {
-  .elements {
-    padding-top: 51px;
-  }
 }
 
 @media screen and (max-width: 677px) {
