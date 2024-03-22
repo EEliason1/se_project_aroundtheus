@@ -27,14 +27,52 @@ const initialCards = [
 
 const profileEditButton = document.querySelector("#profile-edit-button");
 const profileEditModal = document.querySelector("#profile-edit-modal");
-const profileEditClose = document.querySelector(
+const profileEditModalClose = document.querySelector(
   "#profile-edit-modal-close-button"
 );
+const profileName = document.querySelector("#profile-name");
+const profileDescription = document.querySelector("#profile-description");
+const profileInputName = document.querySelector("#profile-input-name");
+const profileInputDescription = document.querySelector(
+  "#profile-input-description"
+);
+const profileEditForm = document.querySelector("#profile-edit-form");
+const cardTemplate =
+  document.querySelector("#card-template").content.firstElementChild;
+const cardList = document.querySelector(".elements__list");
+
+function handProfileEditSubmit(evt) {
+  evt.preventDefault();
+  profileName.textContent = profileInputName.value;
+  profileDescription.textContent = profileInputDescription.value;
+  closePopup();
+}
+
+function closePopup() {
+  profileEditModal.classList.remove("modal_opened");
+}
+
+function getCardElement(cardData) {
+  const cardElement = cardTemplate.cloneNode(true);
+  const cardImage = cardElement.querySelector(".elements__image");
+  const cardName = cardElement.querySelector(".elements__name");
+  cardImage.src = cardData.link;
+  cardImage.alt = cardData.name;
+  cardName.textContent = cardData.name;
+  return cardElement;
+}
 
 profileEditButton.addEventListener("click", () => {
+  profileInputName.value = profileName.textContent;
+  profileInputDescription.value = profileDescription.textContent;
   profileEditModal.classList.add("modal_opened");
 });
 
-profileEditClose.addEventListener("click", () => {
-  profileEditModal.classList.remove("modal_opened");
+profileEditModalClose.addEventListener("click", closePopup);
+
+profileEditForm.addEventListener("submit", handProfileEditSubmit);
+
+initialCards.forEach((cardData) => {
+  const cardElement = getCardElement(cardData);
+  cardList.prepend(cardElement);
 });
