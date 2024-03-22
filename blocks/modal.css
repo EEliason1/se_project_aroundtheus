@@ -1,19 +1,18 @@
 .modal {
-  display: flex;
-  visibility: hidden;
+  display: none;
   position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 9999;
+  z-index: 2;
   background-color: rgba(0, 0, 0, 0.5);
   align-items: center;
   justify-content: center;
 }
 
 .modal_opened {
-  visibility: visible;
+  display: flex;
 }
 
 .modal__container {
@@ -22,8 +21,11 @@
   margin: 0 auto;
   padding: 36px;
   position: relative;
-  width: 358px;
-  height: 258px;
+  max-width: 358px;
+  width: 100%;
+  min-height: 258px;
+  box-sizing: border-box;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.15);
 }
 
 .modal__form {
@@ -36,27 +38,28 @@
   margin: 0 auto 41px;
   padding: 0;
   font-size: 24px;
+  line-height: 1.2;
+  font-weight: 900;
 }
 
-.modal__name {
-  margin: 0 auto 17px;
-  padding: 13px 0 13px;
+.modal__input {
+  margin: 0 auto;
+  padding: 13px 0;
   width: 100%;
   height: 14px;
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  font-size: 14px;
+  line-height: 1.2;
+  font-weight: 400;
 }
 
-.modal__description {
-  margin: 0 auto 48px;
-  padding: 13px 0 13px;
-  width: 100%;
-  height: 14px;
-  border: none;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+.modal__input_separation {
+  margin-top: 17px;
 }
 
 .modal__save-button {
+  margin-top: 48px;
   width: 100%;
   height: 50px;
   background-color: #000;
@@ -82,8 +85,10 @@
   background-image: url("../images/Close\ Icon.svg");
   background-position: center;
   background-repeat: no-repeat;
+  background-size: contain;
   width: 40px;
   height: 40px;
+  transition: linear 0.2s;
 }
 
 .modal__exit-button:hover {
@@ -93,9 +98,20 @@
 
 @media screen and (max-width: 677px) {
   .modal__container {
-    width: 238px;
-    height: 272px;
+    max-width: 282px;
+    min-height: 272px;
     padding: 25px 22px;
+  }
+
+  .modal__title {
+    font-size: 18px;
+    line-height: 1.2;
+    margin: 0 auto 62px;
+  }
+
+  .modal__save-button {
+    margin-top: 45px;
+    font-size: 14px;
   }
 
   .modal__exit-button {

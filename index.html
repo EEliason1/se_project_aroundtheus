@@ -25,6 +25,7 @@
           class="header__logo"
         />
       </header>
+
       <section class="profile page__section">
         <img
           src="./images/jacques-cousteau.png"
@@ -48,75 +49,9 @@
           id="profile-add-button"
         ></button>
       </section>
+
       <section class="elements page__section">
-        <ul class="elements__list">
-          <!-- <li class="elements__card">
-            <img
-              src="./images/yosemite.jpg"
-              alt="Yosemite Valley"
-              class="elements__image"
-            />
-            <div class="elements__description">
-              <h2 class="elements__name">Yosemite Valley</h2>
-              <button class="elements__like-button" type="button"></button>
-            </div>
-          </li>
-          <li class="elements__card">
-            <img
-              src="./images/lake-louise.jpg"
-              alt="Lake Louise"
-              class="elements__image"
-            />
-            <div class="elements__description">
-              <h2 class="elements__name">Lake Louise</h2>
-              <button class="elements__like-button" type="button"></button>
-            </div>
-          </li>
-          <li class="elements__card">
-            <img
-              src="./images/bald-mountains.jpg"
-              alt="Bald Mountains"
-              class="elements__image"
-            />
-            <div class="elements__description">
-              <h2 class="elements__name">Bald Mountains</h2>
-              <button class="elements__like-button" type="button"></button>
-            </div>
-          </li>
-          <li class="elements__card">
-            <img
-              src="./images/latemar.jpg"
-              alt="Latemar"
-              class="elements__image"
-            />
-            <div class="elements__description">
-              <h2 class="elements__name">Latemar</h2>
-              <button class="elements__like-button" type="button"></button>
-            </div>
-          </li>
-          <li class="elements__card">
-            <img
-              src="./images/vanoise.jpg"
-              alt="Vanoise National Park"
-              class="elements__image"
-            />
-            <div class="elements__description">
-              <h2 class="elements__name">Vanoise National Park</h2>
-              <button class="elements__like-button" type="button"></button>
-            </div>
-          </li>
-          <li class="elements__card">
-            <img
-              src="./images/lago.jpg"
-              alt="Lago di Braies"
-              class="elements__image"
-            />
-            <div class="elements__description">
-              <h2 class="elements__name">Lago di Braies</h2>
-              <button class="elements__like-button" type="button"></button>
-            </div>
-          </li> -->
-        </ul>
+        <ul class="elements__list"></ul>
       </section>
 
       <footer class="footer page__section">
@@ -131,19 +66,23 @@
             id="profile-edit-modal-close-button"
           ></button>
           <h2 class="modal__title">Edit profile</h2>
-          <form class="modal__form" id="profile-edit-form">
+          <form
+            class="modal__form"
+            name="profile-edit-form"
+            id="profile-edit-form"
+          >
             <input
               type="text"
               name="name"
               placeholder="Name"
-              class="modal__name"
+              class="modal__input"
               id="profile-input-name"
             />
             <input
               type="text"
               name="description"
               placeholder="Description"
-              class="modal__description"
+              class="modal__input modal__input_separation"
               id="profile-input-description"
             />
             <button class="modal__save-button" type="submit">Save</button>

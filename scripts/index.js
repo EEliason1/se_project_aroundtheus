@@ -62,11 +62,13 @@ function getCardElement(cardData) {
   return cardElement;
 }
 
-profileEditButton.addEventListener("click", () => {
+function openPopup() {
   profileInputName.value = profileName.textContent;
   profileInputDescription.value = profileDescription.textContent;
   profileEditModal.classList.add("modal_opened");
-});
+}
+
+profileEditButton.addEventListener("click", openPopup);
 
 profileEditModalClose.addEventListener("click", closePopup);
 
