@@ -1,5 +1,5 @@
 .modal {
-  display: none;
+  display: flex;
   position: fixed;
   top: 0;
   bottom: 0;
@@ -9,10 +9,14 @@
   background-color: rgba(0, 0, 0, 0.5);
   align-items: center;
   justify-content: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.3s, opacity 0.3s linear;
 }
 
 .modal_opened {
-  display: flex;
+  visibility: visible;
+  opacity: 1;
 }
 
 .modal__container {
@@ -65,7 +69,6 @@
   color: #fff;
   border: none;
   border-radius: 2px;
-  transition: ease-in-out 0.2s;
   font-size: 18px;
   line-height: 1.2;
 }
@@ -89,7 +92,6 @@
   background-size: contain;
   width: 40px;
   height: 40px;
-  transition: linear 0.2s;
 }
 
 .modal__exit-button:hover {
