@@ -19,11 +19,20 @@
   border-radius: 10px;
   border: none;
   overflow: hidden;
+  position: relative;
 }
 
 .elements__image {
   width: 282px;
   height: 282px;
+}
+
+.elements__image_preview {
+  max-width: 75vw;
+  min-width: 282px;
+  max-height: 75vh;
+  height: auto;
+  width: auto;
 }
 
 .elements__description {
@@ -58,8 +67,33 @@
   transition: ease-in-out 0.2s;
 }
 
+.elements__like-button_active {
+  background-image: url("../images/like-active.svg");
+}
+
 .elements__like-button:hover {
   opacity: 50%;
+  cursor: pointer;
+}
+
+.elements__delete-button {
+  width: 18px;
+  height: 19px;
+  background-image: url("../images/Trash.svg");
+  background-color: transparent;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: none;
+  margin: 0 auto;
+  padding: 0;
+  transition: ease-in-out 0.2s;
+  position: absolute;
+  top: 18px;
+  right: 15px;
+}
+
+.elements__delete-button:hover {
+  opacity: 60%;
   cursor: pointer;
 }
 

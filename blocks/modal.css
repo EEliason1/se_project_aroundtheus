@@ -97,11 +97,43 @@
   cursor: pointer;
 }
 
+.modal__container_preview-image {
+  max-width: 75vw;
+  max-height: 75vh;
+  width: auto;
+  display: flex;
+  margin: 0 auto;
+  padding: 0;
+  background-color: transparent;
+  justify-content: center;
+}
+
+.modal__image_caption {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.2;
+  max-width: 282px;
+  color: #fff;
+  position: absolute;
+  bottom: -22px;
+  left: 0;
+  margin: 0 auto;
+}
+
 @media screen and (max-width: 677px) {
   .modal__container {
     max-width: 282px;
     min-height: 272px;
     padding: 25px 22px;
+  }
+
+  .modal__container_preview-image {
+    max-width: 75vw;
+    max-height: 75vh;
+    width: auto;
+    display: flex;
+    margin: 0 auto;
+    padding: 0;
   }
 
   .modal__title {

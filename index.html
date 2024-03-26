@@ -113,18 +113,47 @@
               class="modal__input modal__input_type_separation"
               id="card-input-url"
             />
-            <button class="modal__save-button" type="submit">Save</button>
+            <button class="modal__save-button" type="submit">Create</button>
           </form>
+        </div>
+      </div>
+
+      <div class="modal" id="preview-image-modal">
+        <div
+          class="modal__container modal__container_preview-image"
+          id="preview-image-container"
+        >
+          <button
+            class="modal__exit-button"
+            type="button"
+            id="image-preview-close-button"
+          ></button>
+          <img
+            src=""
+            alt=""
+            class="elements__image elements__image_preview"
+            id="preview-image"
+          />
+          <p class="modal__image_caption" id="image-preview-caption"></p>
         </div>
       </div>
     </div>
 
     <template id="card-template">
       <li class="elements__card">
+        <button
+          class="elements__delete-button"
+          type="button"
+          id="card-delete-button"
+        ></button>
         <img src="" alt="" class="elements__image" id="card-URL" />
         <div class="elements__description">
           <h2 class="elements__name" id="card-title"></h2>
-          <button class="elements__like-button" type="button"></button>
+          <button
+            class="elements__like-button"
+            type="button"
+            id="like-button"
+          ></button>
         </div>
       </li>
     </template>
