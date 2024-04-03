@@ -39,9 +39,10 @@ function hasInvalidInput(inputList) {
 
 function checkInputValidity(formElement, inputElement, options) {
   if (!inputElement.validity.valid) {
-    return showInputError(formElement, inputElement, options);
+    showInputError(formElement, inputElement, options);
+  } else {
+    hideInputError(formElement, inputElement, options);
   }
-  hideInputError(formElement, inputElement, options);
 }
 
 function enableButton(submitButton, { inactiveButtonClass }) {
@@ -70,7 +71,7 @@ function setEventListeners(formElement, options) {
   const inputElements = Array.from(
     formElement.querySelectorAll(options.inputSelector)
   );
-  const submitButton = formElement.querySelector(".modal__save-button");
+  const submitButton = formElement.querySelector(options.submitButtonSelector);
   inputElements.forEach((inputElement) => {
     inputElement.addEventListener("input", (evt) => {
       checkInputValidity(formElement, inputElement, options);

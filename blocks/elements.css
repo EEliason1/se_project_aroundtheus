@@ -25,6 +25,7 @@
 .elements__image {
   width: 282px;
   height: 282px;
+  cursor: pointer;
 }
 
 .elements__image_preview {
