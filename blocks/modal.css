@@ -35,6 +35,7 @@
 .modal__form {
   display: flex;
   flex-direction: column;
+  /* position: relative; */
 }
 
 .modal__title {
@@ -55,6 +56,10 @@
   font-size: 14px;
   line-height: 1.2;
   font-weight: 400;
+}
+
+.modal__input_separator {
+  position: relative;
 }
 
 .modal__input_type_separation {
@@ -120,6 +125,36 @@
   bottom: -22px;
   left: 0;
   margin: 0 auto;
+}
+
+.modal__error {
+  font-size: 12px;
+  line-height: 1.2;
+  color: #f00;
+  opacity: 0;
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 0;
+  transition: opacity 0.2s;
+}
+
+.modal__error_visible {
+  opacity: 1;
+}
+
+.modal__input_type_error {
+  border-bottom: 1px solid #f00;
+}
+
+.modal__save-button_disabled {
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  color: rgba(0, 0, 0, 0.2);
+}
+
+.modal__save-button_disabled:hover {
+  opacity: 1;
+  cursor: default;
 }
 
 @media screen and (max-width: 677px) {
