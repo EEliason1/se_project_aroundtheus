@@ -78,21 +78,3 @@ export default class FormValidator {
     this._setEventListeners();
   }
 }
-
-const config = {
-  inputSelector: ".modal__input",
-  submitButtonSelector: ".modal__save-button",
-  inactiveButtonClass: "modal__save-button_disabled",
-  inputErrorClass: "modal__input_type_error",
-  errorClass: "modal__error_visible",
-};
-
-const cardModal = document.querySelector("#card-add-modal");
-const addFormElement = cardModal.querySelector("#card-add-form");
-const addFormValidator = new FormValidator(config, addFormElement);
-addFormValidator.enableValidation();
-
-const editModal = document.querySelector("#profile-edit-modal");
-const editFormElement = editModal.querySelector("#profile-edit-form");
-const editFormValidator = new FormValidator(config, editFormElement);
-editFormValidator.enableValidation();
