@@ -4,7 +4,6 @@ export default class Card {
     this._link = cardData.link;
     this._cardSelector = cardSelector;
     this._handleImageClick = handleImageClick;
-    console.log(handleImageClick);
   }
 
   _handleLike() {
