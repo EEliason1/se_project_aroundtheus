@@ -1,13 +1,28 @@
-export default class Popup {
-  constructor(popupSelector) {
-    this._popupSelector = popupSelector;
-  }
+// import {
+//   openModal,
+//   closeModal,
+//   handleEscUp,
+//   isCloseEvent,
+// } from "../utils/utils.js";
 
-  open() {}
+// export default class Popup {
+//   constructor({ popupSelector }) {
+//     this._popupElement = document.querySelector(popupSelector);
+//   }
 
-  close() {}
+//   open() {
+//     openModal(this._popupElement);
+//   }
 
-  _handleEscClose() {}
+//   close() {
+//     closeModal(this._popupElement);
+//   }
 
-  setEventListeners() {}
-}
+//   _handleEscClose() {
+//     handleEscUp();
+//   }
+
+//   setEventListeners() {
+//     this._popupElement.addEventListener("click", isCloseEvent(evt, close()));
+//   }
+// }

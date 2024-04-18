@@ -1,46 +1,16 @@
+import Section from "../components/Section.js";
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
-
-const initialCards = [
-  {
-    name: "Yosemite Valley",
-    link: "./images/yosemite.jpg",
-  },
-  {
-    name: "Lake Louise",
-    link: "./images/lake-louise.jpg",
-  },
-  {
-    name: "Bald Mountains",
-    link: "./images/bald-mountains.jpg",
-  },
-  {
-    name: "Latemar",
-    link: "./images/latemar.jpg",
-  },
-  {
-    name: "Vanoise National Park",
-    link: "./images/vanoise.jpg",
-  },
-  {
-    name: "Lago di Braies",
-    link: "./images/lago.jpg",
-  },
-];
-
-const config = {
-  formSelector: ".modal__form",
-  inputSelector: ".modal__input",
-  submitButtonSelector: ".modal__save-button",
-  inactiveButtonClass: "modal__save-button_disabled",
-  inputErrorClass: "modal__input_type_error",
-  errorClass: "modal__error_visible",
-};
+import { initialCards, config, formValidators } from "../utils/constants.js";
+// import { placeNewCard, createNewCard } from "../utils/utils.js";
+// import Popup from "../components/Popup.js";
+// import PopupWithForm from "../components/PopupWithForm.js";
+// import PopupWithImage from "../components/PopupWithImage.js";
 
 //Modals
 const modals = document.querySelectorAll(".modal");
 
-//Profile edit declarations
+// //Profile edit declarations
 const profileEditModal = document.querySelector("#profile-edit-modal");
 const profileEditButton = document.querySelector("#profile-edit-button");
 const profileName = document.querySelector("#profile-name");
@@ -51,7 +21,7 @@ const profileInputDescription = document.querySelector(
 );
 const profileEditForm = document.forms["profile-edit-form"];
 
-//Add card declarations
+// //Add card declarations
 const cardAddModal = document.querySelector("#card-add-modal");
 const cardList = document.querySelector(".elements__list");
 const cardAddButton = document.querySelector("#profile-add-button");
@@ -59,14 +29,12 @@ const cardInputTitle = document.querySelector("#card-input-title");
 const cardInputURL = document.querySelector("#card-input-url");
 const cardAddForm = document.forms["card-add-form"];
 
-//Preview Image
+// //Preview Image
 const previewImageModal = document.querySelector("#preview-image-modal");
 const previewImage = document.querySelector("#preview-image");
 const previewImageCaption = document.querySelector("#image-preview-caption");
 
 //Form Validators
-const formValidators = {};
-
 const enableValidation = (config) => {
   const formList = Array.from(document.querySelectorAll(config.formSelector));
   formList.forEach((formElement) => {
@@ -153,4 +121,15 @@ cardAddButton.addEventListener("click", () => openModal(cardAddModal));
 profileEditForm.addEventListener("submit", handleProfileEditSubmit);
 cardAddForm.addEventListener("submit", handleCardAddSubmit);
 
-initialCards.forEach((cardData) => placeNewCard(cardData, cardList));
+const cardSection = new Section(
+  {
+    items: initialCards,
+    renderer: (cardData) => {
+      const cardElement = createNewCard(cardData, "#card-template");
+      cardSection.addItem(cardElement);
+    },
+  },
+  "elements__list"
+);
+
+cardSection.renderItems();
