@@ -37,7 +37,7 @@ export const config = {
 };
 export const formValidators = {};
 
-export const modals = document.querySelectorAll(".modal");
+// export const modals = document.querySelectorAll(".modal");
 
 //Profile edit declarations
 export const profileEditModal = document.querySelector("#profile-edit-modal");

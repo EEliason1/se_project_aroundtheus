@@ -5,24 +5,16 @@ import {
   config,
   formValidators,
   profileEditButton,
-  profileEditForm,
-  profileInputName,
-  profileInputDescription,
   cardAddButton,
-  cardAddForm,
-  cardAddModal,
-  profileEditModal,
 } from "../utils/constants.js";
 import {
   createNewCard,
-  openModal,
   handleCardAddSubmit,
-  closeModal,
+  handleProfileFormSubmit,
+  initializeProfileEditForm,
+  userInfo,
 } from "../utils/utils.js";
-import UserInfo from "../components/UserInfo.js";
-// import Popup from "../components/Popup.js";
-// import PopupWithForm from "../components/PopupWithForm.js";
-// import PopupWithImage from "../components/PopupWithImage.js";
+import PopupWithForm from "../components/PopupWithForm.js";
 
 //Form Validators
 const enableValidation = (config) => {
@@ -51,25 +43,24 @@ const cardSection = new Section(
 
 cardSection.renderItems();
 
-cardAddButton.addEventListener("click", () => openModal(cardAddModal));
+//Create Popups With Forms
+const popupWithFormEdit = new PopupWithForm(
+  "#profile-edit-modal",
+  handleProfileFormSubmit
+);
 
-cardAddForm.addEventListener("submit", handleCardAddSubmit);
-
-//Track User Info
-const userInfo = new UserInfo("#profile-name", "#profile-description");
 profileEditButton.addEventListener("click", () => {
-  const userData = userInfo.getUserInfo();
-  profileInputName.value = userData.name;
-  profileInputDescription.value = userData.job;
-  openModal(profileEditModal);
+  popupWithFormEdit.setEventListeners();
+  initializeProfileEditForm(userInfo);
+  popupWithFormEdit.open();
 });
 
-profileEditForm.addEventListener("submit", (evt) => {
-  evt.preventDefault();
-  const newUserInfo = {
-    name: profileInputName.value,
-    job: profileInputDescription.value,
-  };
-  userInfo.setUserInfo(newUserInfo);
-  closeModal(profileEditModal);
+const popupWithFormCard = new PopupWithForm(
+  "#card-add-modal",
+  handleCardAddSubmit
+);
+
+cardAddButton.addEventListener("click", () => {
+  popupWithFormCard.setEventListeners();
+  popupWithFormCard.open();
 });

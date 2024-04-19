@@ -1,9 +1,4 @@
-import {
-  openModal,
-  closeModal,
-  handleEscUp,
-  isCloseEvent,
-} from "../utils/utils.js";
+import { openModal, closeModal } from "../utils/utils.js";
 
 export default class Popup {
   constructor({ popupSelector }) {
@@ -16,13 +11,20 @@ export default class Popup {
 
   close() {
     closeModal(this._popupElement);
+    document.removeEventListener("keydown", (evt) => {
+      this._handleEscClose(evt);
+    });
   }
 
-  _handleEscClose() {
-    handleEscUp();
+  _handleEscClose(evt) {
+    if (evt.key == "Escape") {
+      this.close();
+    }
   }
 
   setEventListeners() {
-    this._popupElement.addEventListener("click", isCloseEvent(evt, close()));
+    document.addEventListener("keydown", (evt) => {
+      this._handleEscClose(evt);
+    });
   }
 }

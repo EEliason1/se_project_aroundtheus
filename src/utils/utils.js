@@ -1,21 +1,13 @@
 import {
-  previewImage,
-  previewImageCaption,
-  previewImageModal,
-  cardInputTitle,
-  cardInputURL,
   cardList,
-  cardAddModal,
-  cardAddForm,
   formValidators,
-  profileDescription,
-  profileInputDescription,
-  profileName,
   profileInputName,
-  profileEditModal,
+  profileInputDescription,
 } from "./constants.js";
 
 import Card from "../components/Card.js";
+import UserInfo from "../components/UserInfo.js";
+import PopupWithImage from "../components/PopupWithImage.js";
 
 export function createNewCard(cardData, template) {
   return new Card(cardData, template, handleImageClick).generateCard();
@@ -27,21 +19,18 @@ export function placeNewCard(cardData, wrapper) {
 }
 
 export function handleImageClick(name, link) {
-  previewImage.src = link;
-  previewImage.alt = name;
-  previewImageCaption.textContent = name;
-  openModal(previewImageModal);
+  const popupWithImage = new PopupWithImage(name, link, "#preview-image-modal");
+  popupWithImage.setEventListeners();
+  popupWithImage.open(name, link);
 }
 
 export function openModal(modal) {
   modal.classList.add("modal_opened");
-  document.addEventListener("keydown", handleModalCloseEsc);
   modal.addEventListener("mousedown", handleModalCloseClick);
 }
 
 export function closeModal(modal) {
   modal.classList.remove("modal_opened");
-  document.removeEventListener("keydown", handleModalCloseEsc);
   modal.removeEventListener("mousedown", handleModalCloseClick);
 }
 
@@ -54,19 +43,27 @@ function handleModalCloseClick(evt) {
   }
 }
 
-function handleModalCloseEsc(evt) {
-  if (evt.key == "Escape") {
-    const openedModal = document.querySelector(".modal_opened");
-    closeModal(openedModal);
-  }
-}
-
-export function handleCardAddSubmit(evt) {
-  evt.preventDefault();
-  const name = cardInputTitle.value;
-  const link = cardInputURL.value;
-  placeNewCard({ link, name }, cardList);
-  closeModal(cardAddModal);
-  cardAddForm.reset();
+export const handleCardAddSubmit = (cardInfo) => {
+  const newCardInfo = {
+    name: cardInfo.title,
+    link: cardInfo.link,
+  };
+  placeNewCard(newCardInfo, cardList);
   formValidators["card-add-form"].disableButton();
-}
+};
+
+export const userInfo = new UserInfo("#profile-name", "#profile-description");
+
+export const initializeProfileEditForm = (userInfo) => {
+  const userData = userInfo.getUserInfo();
+  profileInputName.value = userData.name;
+  profileInputDescription.value = userData.job;
+};
+
+export const handleProfileFormSubmit = (userInput) => {
+  const newUserInfo = {
+    name: userInput.name,
+    job: userInput.job,
+  };
+  userInfo.setUserInfo(newUserInfo);
+};
