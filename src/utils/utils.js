@@ -26,21 +26,10 @@ export function handleImageClick(name, link) {
 
 export function openModal(modal) {
   modal.classList.add("modal_opened");
-  modal.addEventListener("mousedown", handleModalCloseClick);
 }
 
 export function closeModal(modal) {
   modal.classList.remove("modal_opened");
-  modal.removeEventListener("mousedown", handleModalCloseClick);
-}
-
-function handleModalCloseClick(evt) {
-  if (
-    evt.target.classList.contains("modal") ||
-    evt.target.classList.contains("modal__exit-button")
-  ) {
-    closeModal(evt.currentTarget);
-  }
 }
 
 export const handleCardAddSubmit = (cardInfo) => {

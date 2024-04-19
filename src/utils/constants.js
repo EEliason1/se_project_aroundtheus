@@ -37,15 +37,8 @@ export const config = {
 };
 export const formValidators = {};
 
-// export const modals = document.querySelectorAll(".modal");
-
 //Profile edit declarations
-export const profileEditModal = document.querySelector("#profile-edit-modal");
 export const profileEditButton = document.querySelector("#profile-edit-button");
-export const profileName = document.querySelector("#profile-name");
-export const profileDescription = document.querySelector(
-  "#profile-description"
-);
 export const profileInputName = document.querySelector("#profile-input-name");
 export const profileInputDescription = document.querySelector(
   "#profile-input-description"
@@ -53,16 +46,5 @@ export const profileInputDescription = document.querySelector(
 export const profileEditForm = document.forms["profile-edit-form"];
 
 //Add card declarations
-export const cardAddModal = document.querySelector("#card-add-modal");
 export const cardList = document.querySelector(".elements__list");
 export const cardAddButton = document.querySelector("#profile-add-button");
-export const cardInputTitle = document.querySelector("#card-input-title");
-export const cardInputURL = document.querySelector("#card-input-url");
-export const cardAddForm = document.forms["card-add-form"];
-
-//Preview Image
-export const previewImageModal = document.querySelector("#preview-image-modal");
-export const previewImage = document.querySelector("#preview-image");
-export const previewImageCaption = document.querySelector(
-  "#image-preview-caption"
-);
