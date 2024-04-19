@@ -6,15 +6,12 @@ import {
   formValidators,
   profileEditButton,
   cardAddButton,
+  profileInputName,
+  profileInputDescription,
 } from "../utils/constants.js";
-import {
-  createNewCard,
-  handleCardAddSubmit,
-  handleProfileFormSubmit,
-  initializeProfileEditForm,
-  userInfo,
-} from "../utils/utils.js";
+import { createNewCard, handleCardAddSubmit } from "../utils/utils.js";
 import PopupWithForm from "../components/PopupWithForm.js";
+import UserInfo from "../components/UserInfo.js";
 
 //Form Validators
 const enableValidation = (config) => {
@@ -42,6 +39,23 @@ const cardSection = new Section(
 );
 
 cardSection.renderItems();
+
+//Handle User Data
+const userInfo = new UserInfo("#profile-name", "#profile-description");
+
+const initializeProfileEditForm = (userInfo) => {
+  const userData = userInfo.getUserInfo();
+  profileInputName.value = userData.name;
+  profileInputDescription.value = userData.job;
+};
+
+const handleProfileFormSubmit = (userInput) => {
+  const newUserInfo = {
+    name: userInput.name,
+    job: userInput.job,
+  };
+  userInfo.setUserInfo(newUserInfo);
+};
 
 //Create Popups With Forms
 const popupWithFormEdit = new PopupWithForm(

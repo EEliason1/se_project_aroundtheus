@@ -1,12 +1,6 @@
-import {
-  cardList,
-  formValidators,
-  profileInputName,
-  profileInputDescription,
-} from "./constants.js";
+import { cardList, formValidators } from "./constants.js";
 
 import Card from "../components/Card.js";
-import UserInfo from "../components/UserInfo.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 
 export function createNewCard(cardData, template) {
@@ -39,20 +33,4 @@ export const handleCardAddSubmit = (cardInfo) => {
   };
   placeNewCard(newCardInfo, cardList);
   formValidators["card-add-form"].disableButton();
-};
-
-export const userInfo = new UserInfo("#profile-name", "#profile-description");
-
-export const initializeProfileEditForm = (userInfo) => {
-  const userData = userInfo.getUserInfo();
-  profileInputName.value = userData.name;
-  profileInputDescription.value = userData.job;
-};
-
-export const handleProfileFormSubmit = (userInput) => {
-  const newUserInfo = {
-    name: userInput.name,
-    job: userInput.job,
-  };
-  userInfo.setUserInfo(newUserInfo);
 };
