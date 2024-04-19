@@ -48,9 +48,9 @@ const popupWithFormEdit = new PopupWithForm(
   "#profile-edit-modal",
   handleProfileFormSubmit
 );
+popupWithFormEdit.setEventListeners();
 
 profileEditButton.addEventListener("click", () => {
-  popupWithFormEdit.setEventListeners();
   initializeProfileEditForm(userInfo);
   popupWithFormEdit.open();
 });
@@ -59,8 +59,8 @@ const popupWithFormCard = new PopupWithForm(
   "#card-add-modal",
   handleCardAddSubmit
 );
+popupWithFormCard.setEventListeners();
 
 cardAddButton.addEventListener("click", () => {
-  popupWithFormCard.setEventListeners();
   popupWithFormCard.open();
 });
