@@ -25,7 +25,7 @@ export default class Popup {
         evt.target.classList.contains("modal") ||
         evt.target.classList.contains("modal__exit-button")
       ) {
-        evt.currentTarget.classList.remove("modal_opened");
+        this.close();
       }
     });
   }
