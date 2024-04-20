@@ -1,28 +1,35 @@
 //Default cards object
+import yosemiteImage from "../images/yosemite.jpg";
+import lakeLouiseImage from "../images/lake-louise.jpg";
+import baldMountainsImage from "../images/bald-mountains.jpg";
+import latemarImage from "../images/latemar.jpg";
+import vanoiseImage from "../images/vanoise.jpg";
+import lagoImage from "../images/lago.jpg";
+
 export const initialCards = [
   {
     name: "Yosemite Valley",
-    link: "./images/yosemite.jpg",
+    link: yosemiteImage,
   },
   {
     name: "Lake Louise",
-    link: "./images/lake-louise.jpg",
+    link: lakeLouiseImage,
   },
   {
     name: "Bald Mountains",
-    link: "./images/bald-mountains.jpg",
+    link: baldMountainsImage,
   },
   {
     name: "Latemar",
-    link: "./images/latemar.jpg",
+    link: latemarImage,
   },
   {
     name: "Vanoise National Park",
-    link: "./images/vanoise.jpg",
+    link: vanoiseImage,
   },
   {
     name: "Lago di Braies",
-    link: "./images/lago.jpg",
+    link: lagoImage,
   },
 ];
 

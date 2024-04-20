@@ -13,6 +13,8 @@ import { createNewCard, handleCardAddSubmit } from "../utils/utils.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 
+import "../pages/index.css";
+
 //Form Validators
 const enableValidation = (config) => {
   const formList = Array.from(document.querySelectorAll(config.formSelector));
