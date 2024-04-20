@@ -1,37 +1,31 @@
-import { openModal, closeModal } from "../utils/utils.js";
-
 export default class Popup {
   constructor({ popupSelector }) {
     this._popupElement = document.querySelector(popupSelector);
   }
 
   open() {
-    openModal(this._popupElement);
+    this._popupElement.classList.add("modal_opened");
+    document.addEventListener("keydown", this._handleEscClose);
   }
 
   close() {
-    closeModal(this._popupElement);
-    document.removeEventListener("keydown", (evt) => {
-      this._handleEscClose(evt);
-    });
+    this._popupElement.classList.remove("modal_opened");
+    document.removeEventListener("keydown", this._handleEscClose);
   }
 
-  _handleEscClose(evt) {
+  _handleEscClose = (evt) => {
     if (evt.key == "Escape") {
       this.close();
     }
-  }
+  };
 
   setEventListeners() {
-    document.addEventListener("keydown", (evt) => {
-      this._handleEscClose(evt);
-    });
     this._popupElement.addEventListener("click", (evt) => {
       if (
         evt.target.classList.contains("modal") ||
         evt.target.classList.contains("modal__exit-button")
       ) {
-        closeModal(evt.currentTarget);
+        evt.currentTarget.classList.remove("modal_opened");
       }
     });
   }

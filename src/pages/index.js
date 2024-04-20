@@ -6,10 +6,10 @@ import {
   formValidators,
   profileEditButton,
   cardAddButton,
-  profileInputName,
-  profileInputDescription,
+  cardList,
 } from "../utils/constants.js";
-import { createNewCard, handleCardAddSubmit } from "../utils/utils.js";
+import Card from "../components/Card.js";
+import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 
@@ -42,21 +42,30 @@ const cardSection = new Section(
 
 cardSection.renderItems();
 
+//New Card Functions
+function createNewCard(cardData, template) {
+  return new Card(cardData, template, handleImageClick).generateCard();
+}
+
+const handleCardAddSubmit = (cardInfo) => {
+  const newCardInfo = {
+    name: cardInfo.title,
+    link: cardInfo.link,
+  };
+  cardSection.addNewItem(createNewCard(newCardInfo, "#card-template"));
+  formValidators["card-add-form"].disableButton();
+};
+
 //Handle User Data
 const userInfo = new UserInfo("#profile-name", "#profile-description");
 
 const initializeProfileEditForm = (userInfo) => {
   const userData = userInfo.getUserInfo();
-  profileInputName.value = userData.name;
-  profileInputDescription.value = userData.job;
+  popupWithFormEdit.setInputValues(userData);
 };
 
 const handleProfileFormSubmit = (userInput) => {
-  const newUserInfo = {
-    name: userInput.name,
-    job: userInput.job,
-  };
-  userInfo.setUserInfo(newUserInfo);
+  userInfo.setUserInfo(userInput);
 };
 
 //Create Popups With Forms
@@ -80,3 +89,11 @@ popupWithFormCard.setEventListeners();
 cardAddButton.addEventListener("click", () => {
   popupWithFormCard.open();
 });
+
+//Create Popup with Image
+const popupWithImage = new PopupWithImage("#preview-image-modal");
+popupWithImage.setEventListeners();
+
+function handleImageClick(name, link) {
+  popupWithImage.open(name, link);
+}
