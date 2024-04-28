@@ -12,6 +12,7 @@ import Card from "../components/Card.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
+import Api from "../components/API.js";
 
 import "../pages/index.css";
 
@@ -97,3 +98,22 @@ popupWithImage.setEventListeners();
 function handleImageClick(name, link) {
   popupWithImage.open(name, link);
 }
+
+//Create API
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "0e6b8e99-3fb6-490c-b2a5-5d193b29415c",
+    "Content-Type": "application/json",
+  },
+});
+
+api
+  .getInitialCards()
+  .then((result) => {
+    console.log(result);
+    cardSection.renderItems(result);
+  })
+  .catch((err) => {
+    console.error(err);
+  });
