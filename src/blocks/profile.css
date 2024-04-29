@@ -83,6 +83,36 @@
   cursor: pointer;
 }
 
+.profile__avatar-button {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+}
+
+.profile__avatar-container {
+  position: relative;
+}
+
+.profile__avatar-overlay {
+  position: absolute;
+  background-color: #000;
+  background-image: url("../images/avatar-edit.svg");
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: ease-in-out 0.2s;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.profile__avatar-overlay:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
 @media screen and (max-width: 975px) {
   .profile {
     margin: 0 auto;

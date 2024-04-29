@@ -1,11 +1,20 @@
 export default class Popup {
   constructor({ popupSelector }) {
     this._popupElement = document.querySelector(popupSelector);
+    this._submitButton = this._popupElement.querySelector(
+      ".modal__save-button"
+    );
+    this._popupSelector = popupSelector;
   }
 
   open() {
     this._popupElement.classList.add("modal_opened");
     document.addEventListener("keydown", this._handleEscClose);
+    if (this._popupSelector == "#card-add-modal") {
+      this._submitButton.textContent = "Create";
+    } else {
+      this._submitButton.textContent = "Save";
+    }
   }
 
   close() {

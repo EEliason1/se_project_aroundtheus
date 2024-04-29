@@ -67,8 +67,31 @@ function createNewCard(cardData, template) {
     cardData,
     template,
     handleImageClick,
-    handleDeleteClick
+    handleDeleteClick,
+    handleLikeClick
   ).generateCard();
+}
+
+function handleLikeClick(cardId, likeStatus) {
+  if (likeStatus) {
+    api
+      .likeCard({ _id: cardId })
+      .then(() => {
+        console.log("This post has been liked");
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  } else {
+    api
+      .dislikeCard({ _id: cardId })
+      .then(() => {
+        console.log("This post has been disliked");
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
 }
 
 function handleDeleteClick(cardId, cardElement) {
@@ -77,9 +100,14 @@ function handleDeleteClick(cardId, cardElement) {
 
 function handleDeleteSubmit(cardId, cardElement) {
   cardElement.remove();
-  api.deleteCard({ _id: cardId }).then(() => {
-    console.log("This post has been deleted");
-  });
+  api
+    .deleteCard({ _id: cardId })
+    .then(() => {
+      console.log("This post has been deleted");
+    })
+    .catch((err) => {
+      console.error(err);
+    });
 }
 
 const confirmDelete = new PopupWithDeleteConfirm(
@@ -94,11 +122,16 @@ const handleCardAddSubmit = (cardInfo) => {
     name: cardInfo.title,
     link: cardInfo.link,
   };
-  api.createCard(newCardInfo).then((newCard) => {
-    const newCardElement = createNewCard(newCard, "#card-template");
-    cardSection.addNewItem(newCardElement);
-    formValidators["card-add-form"].disableButton();
-  });
+  api
+    .createCard(newCardInfo)
+    .then((newCard) => {
+      const newCardElement = createNewCard(newCard, "#card-template");
+      cardSection.addNewItem(newCardElement);
+      formValidators["card-add-form"].disableButton();
+    })
+    .catch((err) => {
+      console.error(err);
+    });
 };
 
 //Handle User Data
@@ -111,7 +144,11 @@ api
     console.error(err);
   });
 
-const userInfo = new UserInfo("#profile-name", "#profile-description");
+const userInfo = new UserInfo(
+  "#profile-name",
+  "#profile-description",
+  "#profile-avatar"
+);
 
 const initializeProfileEditForm = () => {
   api
@@ -135,9 +172,6 @@ const handleProfileFormSubmit = (userInput) => {
     });
 };
 
-//Avatar Change
-const handleAvatarEditSubmit = () => {};
-
 //Create Popups With Forms
 const popupWithFormEdit = new PopupWithForm(
   "#profile-edit-modal",
@@ -160,6 +194,13 @@ popupWithFormCard.setEventListeners();
 cardAddButton.addEventListener("click", () => {
   popupWithFormCard.open();
 });
+
+//Avatar Change
+const handleAvatarEditSubmit = (input) => {
+  api.setUserAvatar(input).then(() => {
+    avatarEditButton.src = input.avatar;
+  });
+};
 
 const popupWithFormAvatar = new PopupWithForm(
   "#avatar-edit-modal",

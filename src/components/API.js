@@ -36,7 +36,7 @@ export default class Api {
   }
 
   //setUserAvatar
-  setUserAvatar(avatar) {
+  setUserAvatar({ avatar }) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       headers: this._headers,
       method: "PATCH",
@@ -65,16 +65,16 @@ export default class Api {
   }
 
   //likeCard
-  likeCard() {
-    return fetch(`${this._baseUrl}/cards/:cardId/likes`, {
+  likeCard({ _id }) {
+    return fetch(`${this._baseUrl}/cards/${_id}/likes`, {
       headers: this._headers,
       method: "PUT",
     }).then(this._validatePromise);
   }
 
   //dislikeCard
-  dislikeCard() {
-    return fetch(`${this._baseUrl}/cards/:cardId/likes`, {
+  dislikeCard({ _id }) {
+    return fetch(`${this._baseUrl}/cards/${_id}/likes`, {
       headers: this._headers,
       method: "DELETE",
       "Content-Type": "application/json",
