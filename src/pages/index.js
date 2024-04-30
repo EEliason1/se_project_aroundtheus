@@ -1,12 +1,12 @@
 import Section from "../components/Section.js";
 import FormValidator from "../components/FormValidator.js";
 import {
-  initialCards,
   config,
   formValidators,
   profileEditButton,
   cardAddButton,
   avatarEditButton,
+  loadingButtonText,
 } from "../utils/constants.js";
 import Card from "../components/Card.js";
 import PopupWithImage from "../components/PopupWithImage.js";
@@ -15,7 +15,7 @@ import UserInfo from "../components/UserInfo.js";
 import Api from "../components/API.js";
 
 import "../pages/index.css";
-import PopupWithDeleteConfirm from "../components/PopupWithDeleteConfirm.js";
+import PopupWithConfirmation from "../components/PopupWithConfirmation.js";
 
 //Form Validators
 const enableValidation = (config) => {
@@ -39,12 +39,12 @@ const api = new Api({
   },
 });
 
-//Card Actions
+//Initial Actions
 let cardSection;
 
 api
-  .getInitialCards()
-  .then((cards) => {
+  .loadPageContent()
+  .then(([cards, userData]) => {
     cardSection = new Section(
       {
         items: cards,
@@ -56,6 +56,8 @@ api
       "elements__list"
     );
     cardSection.renderItems();
+    userInfo.setUserInfo(userData);
+    userInfo.setUserAvatar(userData);
   })
   .catch((err) => {
     console.error(err);
@@ -72,11 +74,12 @@ function createNewCard(cardData, template) {
   ).generateCard();
 }
 
-function handleLikeClick(cardId, likeStatus) {
-  if (likeStatus) {
+function handleLikeClick(cardElement) {
+  if (!cardElement.isLiked()) {
     api
-      .likeCard({ _id: cardId })
-      .then(() => {
+      .likeCard({ _id: cardElement._id })
+      .then((res) => {
+        cardElement.setIsLiked(res.isLiked);
         console.log("This post has been liked");
       })
       .catch((err) => {
@@ -84,8 +87,9 @@ function handleLikeClick(cardId, likeStatus) {
       });
   } else {
     api
-      .dislikeCard({ _id: cardId })
-      .then(() => {
+      .dislikeCard({ _id: cardElement._id })
+      .then((res) => {
+        cardElement.setIsLiked(res.isLiked);
         console.log("This post has been disliked");
       })
       .catch((err) => {
@@ -94,25 +98,31 @@ function handleLikeClick(cardId, likeStatus) {
   }
 }
 
-function handleDeleteClick(cardId, cardElement) {
-  confirmDelete.open(cardId, cardElement);
+function handleDeleteClick(cardInfo) {
+  confirmDelete.setAction(handleCardDeleteSubmit, cardInfo);
+  confirmDelete.open();
 }
 
-function handleDeleteSubmit(cardId, cardElement) {
-  cardElement.remove();
+function handleCardDeleteSubmit(deleteInfo) {
+  confirmDelete.showLoading();
   api
-    .deleteCard({ _id: cardId })
+    .deleteCard({ _id: deleteInfo._id })
     .then(() => {
+      deleteInfo.removeCard();
+      confirmDelete.close();
       console.log("This post has been deleted");
     })
     .catch((err) => {
       console.error(err);
+    })
+    .finally(() => {
+      confirmDelete.hideLoading();
     });
 }
 
-const confirmDelete = new PopupWithDeleteConfirm(
+const confirmDelete = new PopupWithConfirmation(
   "#card-delete-modal",
-  handleDeleteSubmit
+  loadingButtonText
 );
 
 confirmDelete.setEventListeners();
@@ -122,27 +132,22 @@ const handleCardAddSubmit = (cardInfo) => {
     name: cardInfo.title,
     link: cardInfo.link,
   };
+  popupWithFormCard.showLoading();
   api
     .createCard(newCardInfo)
     .then((newCard) => {
       const newCardElement = createNewCard(newCard, "#card-template");
       cardSection.addNewItem(newCardElement);
       formValidators["card-add-form"].disableButton();
+      popupWithFormCard.close();
     })
     .catch((err) => {
       console.error(err);
+    })
+    .finally(() => {
+      popupWithFormCard.hideLoading();
     });
 };
-
-//Handle User Data
-api
-  .getUserInfo()
-  .then((userData) => {
-    userInfo.setUserInfo(userData);
-  })
-  .catch((err) => {
-    console.error(err);
-  });
 
 const userInfo = new UserInfo(
   "#profile-name",
@@ -162,20 +167,26 @@ const initializeProfileEditForm = () => {
 };
 
 const handleProfileFormSubmit = (userInput) => {
+  popupWithFormEdit.showLoading();
   api
     .patchUserInfo(userInput)
     .then((input) => {
       userInfo.setUserInfo(input);
+      popupWithFormEdit.close();
     })
     .catch((err) => {
       console.error(err);
+    })
+    .finally(() => {
+      popupWithFormEdit.hideLoading();
     });
 };
 
 //Create Popups With Forms
 const popupWithFormEdit = new PopupWithForm(
   "#profile-edit-modal",
-  handleProfileFormSubmit
+  handleProfileFormSubmit,
+  loadingButtonText
 );
 popupWithFormEdit.setEventListeners();
 
@@ -186,7 +197,8 @@ profileEditButton.addEventListener("click", () => {
 
 const popupWithFormCard = new PopupWithForm(
   "#card-add-modal",
-  handleCardAddSubmit
+  handleCardAddSubmit,
+  loadingButtonText
 );
 
 popupWithFormCard.setEventListeners();
@@ -197,14 +209,25 @@ cardAddButton.addEventListener("click", () => {
 
 //Avatar Change
 const handleAvatarEditSubmit = (input) => {
-  api.setUserAvatar(input).then(() => {
-    avatarEditButton.src = input.avatar;
-  });
+  popupWithFormAvatar.showLoading();
+  api
+    .setUserAvatar(input)
+    .then(() => {
+      userInfo.setUserAvatar(input);
+      popupWithFormAvatar.close();
+    })
+    .catch((err) => {
+      console.error(err);
+    })
+    .finally(() => {
+      popupWithFormAvatar.hideLoading();
+    });
 };
 
 const popupWithFormAvatar = new PopupWithForm(
   "#avatar-edit-modal",
-  handleAvatarEditSubmit
+  handleAvatarEditSubmit,
+  loadingButtonText
 );
 
 popupWithFormAvatar.setEventListeners();

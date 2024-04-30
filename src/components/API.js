@@ -80,4 +80,8 @@ export default class Api {
       "Content-Type": "application/json",
     }).then(this._validatePromise);
   }
+
+  loadPageContent() {
+    return Promise.all([this.getInitialCards(), this.getUserInfo()]);
+  }
 }

@@ -60,3 +60,5 @@ export const cardAddButton = document.querySelector("#profile-add-button");
 export const avatarModal = document.querySelector("#avatar-edit-modal");
 export const avatarForm = avatarModal.querySelector("#avatar-edit-form");
 export const avatarEditButton = document.querySelector("#avatar-edit-button");
+
+export const loadingButtonText = "Saving...";

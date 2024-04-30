@@ -6,17 +6,22 @@ export default class UserInfo {
   }
 
   getUserInfo() {
-    const userInfo = {
+    return (userInfo = {
       name: this._userName.innerText,
       about: this._userJob.innerText,
-      avatar: this._userAvatar.src,
-    };
-    return userInfo;
+    });
   }
 
-  setUserInfo({ name, about, avatar }) {
+  setUserInfo({ name, about }) {
     this._userName.innerText = name;
     this._userJob.innerText = about;
+  }
+
+  getUserAvatar() {
+    return (userAvatar = { avatar: this._userAvatar.src });
+  }
+
+  setUserAvatar({ avatar }) {
     this._userAvatar.src = avatar;
   }
 }
